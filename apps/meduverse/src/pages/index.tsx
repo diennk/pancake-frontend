@@ -11,21 +11,24 @@ import { bitQueryServerClient, infoServerClient } from 'utils/graphql'
 import Home from '../views/Home'
 
 const IndexPage = ({ totalTx30Days, addressCount30Days, tvl }) => {
-  return (
-    <SWRConfig
-      value={{
-        fallback: {
-          totalTx30Days,
-          addressCount30Days,
-          tvl,
-        },
-      }}
-    >
-      <Home />
-    </SWRConfig>
-  )
-}
+  // return (
+  //   <SWRConfig
+  //     value={{
+  //       fallback: {
+  //         totalTx30Days,
+  //         addressCount30Days,
+  //         tvl,
+  //       },
+  //     }}
+  //   >
+  //     <Home />
+  //   </SWRConfig>
+  // )
 
+  return <Home />
+}
+/**
+ 
 // Values fetched from TheGraph and BitQuery jan 24, 2022
 const txCount = 54780336
 const addressCount = 4425459
@@ -134,7 +137,8 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60 * 60 * 24 * 30, // 30 days
   }
 }
-
+ 
+ */
 IndexPage.chains = []
 
 export default IndexPage

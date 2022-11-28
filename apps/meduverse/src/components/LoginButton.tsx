@@ -1,14 +1,13 @@
 import { useTranslation } from '@pancakeswap/localization'
-import { WalletModalV2 } from '@pancakeswap/ui-wallets'
-import { Button, ButtonProps } from '@pancakeswap/uikit'
-import { createWallets, getDocLink } from 'config/wallet'
-import { useActiveChainId } from 'hooks/useActiveChainId'
+import { Button, ButtonProps, useModal } from '@pancakeswap/uikit'
 import useAuth from 'hooks/useAuth'
 // @ts-ignore
 // eslint-disable-next-line import/extensions
 import { useActiveHandle } from 'hooks/useEagerConnect.bmp.ts'
 import { useMemo, useState } from 'react'
 import { useConnect } from 'wagmi'
+import LoginModal from './LoginModal'
+import SettingsModal from './Menu/GlobalSettings/SettingsModal'
 import Trans from './Trans'
 
 const LoginButton = ({ children, ...props }: ButtonProps) => {
@@ -19,34 +18,16 @@ const LoginButton = ({ children, ...props }: ButtonProps) => {
     currentLanguage: { code },
   } = useTranslation()
   const { connectAsync } = useConnect()
-  const { chainId } = useActiveChainId()
-  const [open, setOpen] = useState(false)
 
-  const docLink = useMemo(() => getDocLink(code), [code])
+  const [onPresentSettingsModal] = useModal(<LoginModal />)
 
-  const handleClick = () => {
-    if (typeof __NEZHA_BRIDGE__ !== 'undefined') {
-      handleActive()
-    } else {
-      setOpen(true)
-    }
-  }
-
-  const wallets = useMemo(() => createWallets(chainId, connectAsync), [chainId, connectAsync])
 
   return (
     <>
-      <Button onClick={handleClick} {...props} variant="danger">
+      <Button onClick={onPresentSettingsModal} {...props} variant="primary">
         {children || <Trans>Login</Trans>}
       </Button>
-      <WalletModalV2
-        docText={t('Learn How to Connect')}
-        docLink={docLink}
-        isOpen={open}
-        wallets={wallets}
-        login={login}
-        onDismiss={() => setOpen(false)}
-      />
+
     </>
   )
 }

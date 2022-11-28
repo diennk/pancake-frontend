@@ -44,25 +44,25 @@ const ScrollableContainer = styled(Flex)`
 
 export const withCustomOnDismiss =
   (Component) =>
-  ({
-    onDismiss,
-    customOnDismiss,
-    mode,
-    ...props
-  }: {
-    onDismiss?: () => void
-    customOnDismiss: () => void
-    mode: SettingsMode
-  }) => {
-    const handleDismiss = useCallback(() => {
-      onDismiss?.()
-      if (customOnDismiss) {
-        customOnDismiss()
-      }
-    }, [customOnDismiss, onDismiss])
+    ({
+      onDismiss,
+      customOnDismiss,
+      mode,
+      ...props
+    }: {
+      onDismiss?: () => void
+      customOnDismiss: () => void
+      mode: SettingsMode
+    }) => {
+      const handleDismiss = useCallback(() => {
+        onDismiss?.()
+        if (customOnDismiss) {
+          customOnDismiss()
+        }
+      }, [customOnDismiss, onDismiss])
 
-    return <Component {...props} mode={mode} onDismiss={handleDismiss} />
-  }
+      return <Component {...props} mode={mode} onDismiss={handleDismiss} />
+    }
 
 const SettingsModal: React.FC<React.PropsWithChildren<InjectedModalProps>> = ({ onDismiss, mode }) => {
   const [showConfirmExpertModal, setShowConfirmExpertModal] = useState(false)
@@ -114,7 +114,7 @@ const SettingsModal: React.FC<React.PropsWithChildren<InjectedModalProps>> = ({ 
                 <Text>{t('Dark mode')}</Text>
                 <ThemeSwitcher isDark={isDark} toggleTheme={() => setTheme(isDark ? 'light' : 'dark')} />
               </Flex>
-              <Flex justifyContent="space-between" alignItems="center" mb="24px">
+              {/* <Flex justifyContent="space-between" alignItems="center" mb="24px">
                 <Flex alignItems="center">
                   <Text>{t('Subgraph Health Indicator')}</Text>
                   <QuestionHelper
@@ -133,8 +133,8 @@ const SettingsModal: React.FC<React.PropsWithChildren<InjectedModalProps>> = ({ 
                     setSubgraphHealth(!subgraphHealth)
                   }}
                 />
-              </Flex>
-              <Flex justifyContent="space-between" alignItems="center" mb="24px">
+              </Flex> */}
+              {/* <Flex justifyContent="space-between" alignItems="center" mb="24px">
                 <Flex alignItems="center">
                   <Text>{t('Show username')}</Text>
                   <QuestionHelper
@@ -151,8 +151,8 @@ const SettingsModal: React.FC<React.PropsWithChildren<InjectedModalProps>> = ({ 
                     setUserUsernameVisibility(!userUsernameVisibility)
                   }}
                 />
-              </Flex>
-              {chainId === ChainId.BSC && <GasSettings />}
+              </Flex> */}
+              {/* {chainId === ChainId.BSC && <GasSettings />} */}
             </Flex>
           </>
         )}
