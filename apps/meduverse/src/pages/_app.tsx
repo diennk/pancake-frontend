@@ -25,6 +25,7 @@ import { SentryErrorBoundary } from '../components/ErrorBoundary'
 import Menu from '../components/Menu'
 import Providers from '../Providers'
 import GlobalStyle from '../style/Global'
+import { SessionProvider } from "next-auth/react"
 
 const EasterEgg = dynamic(() => import('components/EasterEgg'), { ssr: false })
 
@@ -53,8 +54,8 @@ function MPGlobalHooks() {
   return null
 }
 
-function MyApp(props: AppProps<{ initialReduxState: any }>) {
-  const { pageProps, Component } = props
+function MyApp(props: AppProps<{ initialReduxState: any, session: any }>) {
+  const { pageProps: { session, ...pageProps }, Component } = props
   const store = useStore(pageProps.initialReduxState)
 
   return (
@@ -90,7 +91,9 @@ function MyApp(props: AppProps<{ initialReduxState: any }>) {
           <GlobalCheckClaimStatus excludeLocations={[]} />
           <PersistGate loading={null} persistor={persistor}>
             <Updaters />
-            <App {...props} />
+            <SessionProvider session={session}>
+              <App {...props} />
+            </SessionProvider>
           </PersistGate>
         </Blocklist>
       </Providers>

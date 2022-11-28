@@ -11,16 +11,12 @@ import SettingsModal from './Menu/GlobalSettings/SettingsModal'
 import Trans from './Trans'
 
 const LoginButton = ({ children, ...props }: ButtonProps) => {
-  const handleActive = useActiveHandle()
-  const { login } = useAuth()
+  const [onPresentSettingsModal] = useModal(<LoginModal />)
+
   const {
     t,
     currentLanguage: { code },
   } = useTranslation()
-  const { connectAsync } = useConnect()
-
-  const [onPresentSettingsModal] = useModal(<LoginModal />)
-
 
   return (
     <>

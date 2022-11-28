@@ -10,6 +10,7 @@ import {
   Button,
 } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
+import { useSession, signIn, signOut } from "next-auth/react"
 
 const ScrollableContainer = styled(Flex)`
   flex-direction: column;
@@ -47,7 +48,7 @@ const LoginModal: React.FC<React.PropsWithChildren<InjectedModalProps>> = ({ onD
               }}
             />
           </Flex>
-          <Button>Login</Button>
+          <Button onClick={() => signIn('github')}>Login</Button>
 
         </Flex>
       </ScrollableContainer>
