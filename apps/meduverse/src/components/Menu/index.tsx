@@ -7,7 +7,7 @@ import PhishingWarningBanner from 'components/PhishingWarningBanner'
 import useTheme from 'hooks/useTheme'
 import { useCakeBusdPrice } from 'hooks/useBUSDPrice'
 import { usePhishingBannerManager } from 'state/user/hooks'
-import UserMenu from './UserMenu'
+// import UserMenu from './UserMenu'
 import { useMenuItems } from './hooks/useMenuItems'
 import GlobalSettings from './GlobalSettings'
 import { getActiveMenuItem, getActiveSubMenuItem } from './utils'
@@ -45,7 +45,7 @@ const Menu = (props) => {
           <>
             <GlobalSettings mode={SettingsMode.GLOBAL} />
             {/* <NetworkSwitcher /> */}
-            <UserMenu />
+            {/* <UserMenu /> */}
             <ProfileMenu />
           </>
         }
@@ -55,7 +55,7 @@ const Menu = (props) => {
         currentLang={currentLanguage.code}
         langs={languageList}
         setLang={setLanguage}
-        cakePriceUsd={cakePriceUsd}
+        // cakePriceUsd={cakePriceUsd}
         links={menuItems}
         subLinks={activeMenuItem?.hideSubNav || activeSubMenuItem?.hideSubNav ? [] : activeMenuItem?.items}
         footerLinks={getFooterLinks}
