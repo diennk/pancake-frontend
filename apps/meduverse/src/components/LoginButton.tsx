@@ -4,6 +4,7 @@ import useAuth from 'hooks/useAuth'
 // @ts-ignore
 // eslint-disable-next-line import/extensions
 import { useActiveHandle } from 'hooks/useEagerConnect.bmp.ts'
+import { useSession } from 'next-auth/react'
 import { useMemo, useState } from 'react'
 import { useConnect } from 'wagmi'
 import LoginModal from './LoginModal'
@@ -17,6 +18,10 @@ const LoginButton = ({ children, ...props }: ButtonProps) => {
     t,
     currentLanguage: { code },
   } = useTranslation()
+
+  const { data: session } = useSession()
+
+  console.log("session", session)
 
   return (
     <>

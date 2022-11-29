@@ -14,6 +14,7 @@ import { getActiveMenuItem, getActiveSubMenuItem } from './utils'
 import { footerLinks } from './config/footerConfig'
 import { SettingsMode } from './GlobalSettings/types'
 import ProfileMenu from './ProfileMenu'
+import UserMenu from './UserMenu'
 
 const Menu = (props) => {
   const { isDark, setTheme } = useTheme()
@@ -45,7 +46,7 @@ const Menu = (props) => {
           <>
             <GlobalSettings mode={SettingsMode.GLOBAL} />
             {/* <NetworkSwitcher /> */}
-            {/* <UserMenu /> */}
+            <UserMenu />
             <ProfileMenu />
           </>
         }

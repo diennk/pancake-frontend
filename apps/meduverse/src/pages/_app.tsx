@@ -20,12 +20,12 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistor, useStore } from 'state'
 import { usePollBlockNumber } from 'state/block/hooks'
 import TransactionsDetailModal from 'components/TransactionDetailModal'
+import { SessionProvider } from "next-auth/react"
 import { Blocklist, Updaters } from '..'
 import { SentryErrorBoundary } from '../components/ErrorBoundary'
 import Menu from '../components/Menu'
 import Providers from '../Providers'
 import GlobalStyle from '../style/Global'
-import { SessionProvider } from "next-auth/react"
 
 const EasterEgg = dynamic(() => import('components/EasterEgg'), { ssr: false })
 
